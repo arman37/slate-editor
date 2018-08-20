@@ -111,6 +111,32 @@ class AppContainer extends React.Component {
     });
   };
 
+  insertImage(change, file, target, context) {
+    let _self = context;
+
+    if (target) {
+      change.select(target);
+    }
+
+    let reader  = new FileReader();
+
+    // listen for 'load' events on the FileReader
+    reader.addEventListener("load", function () {
+      let src = reader.result;
+      change.insertBlock({
+        type: 'image',
+        isVoid: true,
+        data: { src },
+      });
+
+      _self.onChange(change);
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
 }
 
 export default AppContainer;
