@@ -319,6 +319,25 @@ class AppContainer extends React.Component {
     this.onChange(change);
   };
 
+  render() {
+    let { value } = this.state;
+
+    return (
+      <App
+        value={value}
+        schema={schema}
+        onKeyDown={this.onKeyDown}
+        renderMark={this.renderMark}
+        renderMarkButton={this.renderMarkButton}
+        renderBlockButton={this.renderBlockButton}
+        onChange={this.onChange}
+        onDrop={this.onDropOrPaste}
+        onPaste={this.onDropOrPaste}
+        renderNode={this.renderNode}
+        onClickUpload={this.onClickUpload} />
+    );
+  }
+
 }
 
 export default AppContainer;
