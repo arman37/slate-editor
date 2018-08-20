@@ -179,6 +179,19 @@ class AppContainer extends React.Component {
     return value.blocks.some(node => node.type == type);
   };
 
+  renderMarkButton = (type, icon) => {
+    const isActive = this.hasMark(type);
+
+    return (
+      <Button
+        active={isActive}
+        onMouseDown={event => this.onClickMark(event, type)} >
+
+        <Icon>{icon}</Icon>
+      </Button>
+    )
+  };
+
 }
 
 export default AppContainer;
