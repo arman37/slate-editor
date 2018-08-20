@@ -168,6 +168,12 @@ class AppContainer extends React.Component {
     }
   };
 
+  /********************************************* Text Specific Handlers *****************************************/
+  hasMark = (type) => {
+    const { value } = this.state;
+    return value.activeMarks.some(mark => mark.type === type);
+  };
+
 }
 
 export default AppContainer;
