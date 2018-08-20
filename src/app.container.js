@@ -95,6 +95,34 @@ class AppContainer extends React.Component {
     }
   };
 
+  onKeyDown = (event, change) => {
+    let mark;
+    const { value } = change;
+
+    if (isBoldHotkey(event)) {
+      mark = 'bold';
+    } else if (isItalicHotkey(event)) {
+      mark = 'italic';
+    } else if (isUnderlinedHotkey(event)) {
+      mark = 'underlined';
+    } else if (isCodeHotkey(event)) {
+      mark = 'code';
+    } else if (event.key == 'Enter' && value.startBlock.type == 'check-list-item') {
+      change.splitBlock().setBlocks({ data: { checked: false } });
+      return true;
+    } else if (event.key == 'Backspace' && value.isCollapsed && value.startBlock.type == 'check-list-item' && value.selection.startOffset === 0) {
+      change.setBlocks('paragraph');
+      return true;
+    } else {
+      return
+    }
+
+    event.preventDefault();
+    change.toggleMark(mark);
+
+    return true;
+  };
+
   /****************************************** Image Specific Handlers*******************************************/
   _handleImageUpload = () => {
     let insertImage = this.insertImage;
