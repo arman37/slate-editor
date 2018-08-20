@@ -137,6 +137,11 @@ class AppContainer extends React.Component {
     }
   };
 
+  onClickUpload = (event) => {
+    event.preventDefault();
+    document.querySelector('form input[type=file]').click();
+  };
+
   onDropOrPaste = (event, change, editor) => {
     const target = getEventRange(event, change.value);
     if (!target && event.type == 'drop') return;
@@ -226,6 +231,8 @@ class AppContainer extends React.Component {
         return <u {...attributes}>{children}</u>;
     }
   };
+
+
 
 }
 
