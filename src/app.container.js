@@ -174,6 +174,11 @@ class AppContainer extends React.Component {
     return value.activeMarks.some(mark => mark.type === type);
   };
 
+  hasBlock = (type) => {
+    const { value } = this.state;
+    return value.blocks.some(node => node.type == type);
+  };
+
 }
 
 export default AppContainer;
