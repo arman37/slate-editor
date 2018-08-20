@@ -62,6 +62,11 @@ class AppContainer extends React.Component {
     this._handleImageUpload();
   }
 
+  onChange = ({ value }) => {
+    this.setState({ value });
+  };
+  
+
   /****************************************** Image Specific Handlers*******************************************/
   _handleImageUpload = () => {
     let insertImage = this.insertImage;
