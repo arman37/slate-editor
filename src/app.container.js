@@ -58,6 +58,22 @@ class AppContainer extends React.Component {
     };
   }
 
+  /****************************************** Image Specific Handlers*******************************************/
+  _handleImageUpload = () => {
+    let insertImage = this.insertImage;
+    let _self = this;
+
+    document.querySelector('form input[type=file]').addEventListener('change', (event) => {
+      event.preventDefault();
+
+      let files = event.target.files;
+
+      if (typeof files[0] !== 'object') return false;
+
+      _self.state.value.change().call(insertImage, files[0], undefined, _self);
+    });
+  };
+
 }
 
 export default AppContainer;
