@@ -8,6 +8,7 @@
 A Custom Document Editor with React and Slate.js
 ==================================
 
+
 HOW TO RUN
 ========
 1. Clone the project from git.
