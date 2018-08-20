@@ -11,6 +11,7 @@ import styled from 'react-emotion';
 import { Block, Value } from 'slate';
 import initialValue from './value.json';
 import App from './app.component';
+import ListItemContainer from './list-item.container';
 import { isKeyHotkey } from 'is-hotkey';
 import imageExtensions from 'image-extensions';
 import { Button, Icon, Toolbar } from './components';
@@ -66,7 +67,7 @@ class AppContainer extends React.Component {
     this.setState({ value });
   };
 
-  renderNode = props => {
+  renderNode = (props) => {
     const { attributes, children, node, isFocused } = props;
 
     switch (node.type) {
@@ -87,6 +88,9 @@ class AppContainer extends React.Component {
 
       case 'numbered-list':
         return <ol {...attributes}>{children}</ol>;
+
+      case 'check-list-item':
+        return <ListItemContainer {...props} />;
 
       case 'image': {
         const src = node.data.get('src');
@@ -261,6 +265,14 @@ class AppContainer extends React.Component {
   };
 
 
+  onClickMark = (event, type) => {
+    event.preventDefault();
+
+    const { value } = this.state;
+    const change = value.change().toggleMark(type);
+
+    this.onChange(change);
+  };
 
 }
 
